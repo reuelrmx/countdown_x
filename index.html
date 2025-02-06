@@ -6,10 +6,17 @@
     <title>Exam Countdown & Study Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="dark-mode">
 
     <div class="container">
         <h1>Countdown to Your Exam</h1>
+        
+        <label class="theme-toggle">
+            <input type="checkbox" id="theme-switch">
+            <span class="slider"></span>
+        </label>
+        <p id="theme-label">Dark Mode</p>
+
         <input type="text" id="exam-name" placeholder="Enter Exam Name">
         <input type="date" id="exam-date">
         <button onclick="setExam()">Set Exam</button>
