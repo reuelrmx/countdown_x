@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Countdown & Study Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Countdown to Your Exam</h1>
+        <input type="text" id="exam-name" placeholder="Enter Exam Name">
+        <input type="date" id="exam-date">
+        <button onclick="setExam()">Set Exam</button>
+
+        <div class="countdown">
+            <div><span id="days"></span> Days</div>
+            <div><span id="hours"></span> Hours</div>
+            <div><span id="minutes"></span> Minutes</div>
+            <div><span id="seconds"></span> Seconds</div>
+        </div>
+
+        <h2>Daily Study Reminder</h2>
+        <input type="time" id="reminder-time" value="18:00">
+        <button onclick="setReminder()">Set Reminder</button>
+        <p id="reminder-msg"></p>
+
+        <h2>Motivational Quote</h2>
+        <p id="quote"></p>
+
+        <h2>Study Progress</h2>
+        <input type="number" id="study-hours" placeholder="Hours Studied Today">
+        <button onclick="logStudy()">Log Hours</button>
+        <p>Progress: <span id="progress">0%</span></p>
+        <progress id="progress-bar" value="0" max="100"></progress>
+
+        <h2>Daily Study Challenge</h2>
+        <button onclick="newChallenge()">Get Challenge</button>
+        <p id="challenge"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
