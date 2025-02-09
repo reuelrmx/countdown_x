@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Exam Countdown</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <style>
     body {
       margin: 0;
@@ -22,6 +21,7 @@
 
     .container {
       text-align: center;
+      padding: 20px;
     }
 
     .header {
@@ -30,27 +30,29 @@
     }
 
     .countdown {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 10px;
+      width: 100%;
+      max-width: 600px;
     }
 
     .countdown div {
       background: #111;
-      padding: 20px;
+      padding: 15px;
       border-radius: 8px;
       text-align: center;
-      width: 80px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
     .countdown .value {
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-weight: bold;
     }
 
     .countdown .label {
       margin-top: 5px;
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
 
     .theme-toggle {
@@ -60,72 +62,64 @@
       font-size: 1.5rem;
       cursor: pointer;
     }
+
+    /* Light theme styles */
+    body.light-theme {
+      background-color: #f0f0f0;
+      color: #000;
+    }
+
+    body.light-theme .countdown div {
+      background: #ddd;
+    }
   </style>
 </head>
 <body>
-  <div class="theme-toggle"><i class="fas fa-moon"></i></div>
   <div class="container">
+    <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
     <div class="header">Exam Countdown</div>
     <div class="countdown">
       <div>
-        <div class="value" id="days">--</div>
-        <div class="label">DAYS</div>
+        <div class="value" id="days">0</div>
+        <div class="label">Days</div>
       </div>
       <div>
-        <div class="value" id="hours">--</div>
-        <div class="label">HOURS</div>
+        <div class="value" id="hours">0</div>
+        <div class="label">Hours</div>
       </div>
       <div>
-        <div class="value" id="minutes">--</div>
-        <div class="label">MINUTES</div>
+        <div class="value" id="minutes">0</div>
+        <div class="label">Minutes</div>
       </div>
       <div>
-        <div class="value" id="seconds">--</div>
-        <div class="label">SECONDS</div>
+        <div class="value" id="seconds">0</div>
+        <div class="label">Seconds</div>
       </div>
     </div>
   </div>
   <script>
-    const toggleButton = document.querySelector('.theme-toggle');
-    const body = document.body;
-
-    toggleButton.addEventListener('click', () => {
-      body.classList.toggle('light-theme');
-      const icon = toggleButton.querySelector('i');
-      icon.classList.toggle('fa-moon');
-      icon.classList.toggle('fa-sun');
-    });
+    const targetDate = new Date("2025-03-15T00:00:00").getTime();
 
     function updateCountdown() {
-      const examDate = new Date("2024-08-26T08:00:00");
-      const now = new Date();
-      const timeDifference = examDate - now;
+      const now = new Date().getTime();
+      const distance = targetDate - now;
 
-      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      document.getElementById('days').textContent = days > 0 ? days : 0;
-      document.getElementById('hours').textContent = hours > 0 ? hours : 0;
-      document.getElementById('minutes').textContent = minutes > 0 ? minutes : 0;
-      document.getElementById('seconds').textContent = seconds > 0 ? seconds : 0;
+      document.getElementById("days").innerText = days > 0 ? days : 0;
+      document.getElementById("hours").innerText = hours > 0 ? hours : 0;
+      document.getElementById("minutes").innerText = minutes > 0 ? minutes : 0;
+      document.getElementById("seconds").innerText = seconds > 0 ? seconds : 0;
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle("light-theme");
     }
 
     setInterval(updateCountdown, 1000);
-
-    // Light theme styles
-    const style = document.createElement('style');
-    style.textContent = `
-      body.light-theme {
-        background-color: #f0f0f0;
-        color: #000;
-      }
-      body.light-theme .countdown div {
-        background: #ddd;
-      }
-    `;
-    document.head.appendChild(style);
   </script>
 </body>
 </html>
