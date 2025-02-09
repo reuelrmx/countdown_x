@@ -1,48 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exam Countdown</title>
-    <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exam Countdown</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .header {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .countdown div {
+      background: #111;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      width: 80px;
+    }
+
+    .countdown .value {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .countdown .label {
+      margin-top: 5px;
+      font-size: 1rem;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Exam Countdown</h1>
-            <button id="theme-toggle" class="theme-button"><i class="fas fa-moon"></i></button>
-        </header>
-        
-        <div class="countdown">
-            <div class="time-box"><span id="days">00</span><span>Days</span></div>
-            <div class="time-box"><span id="hours">00</span><span>Hours</span></div>
-            <div class="time-box"><span id="minutes">00</span><span>Minutes</span></div>
-            <div class="time-box"><span id="seconds">00</span><span>Seconds</span></div>
-        </div>
-
-        <div class="reminders">
-            <h2>Daily Study Reminder</h2>
-            <p>Time: <span id="reminder-time">6:00 PM</span></p>
-        </div>
-
-        <div class="motivational">
-            <h2>Motivational Quote</h2>
-            <p id="quote">Loading...</p>
-        </div>
-
-        <div class="progress">
-            <h2>Study Progress</h2>
-            <div class="progress-bar">
-                <div id="progress-fill" style="width: 20%;"></div>
-            </div>
-            <p><span id="progress-text">20%</span> Completed</p>
-        </div>
-
-        <footer>
-            <p>Designed by @reuelrmx</p>
-        </footer>
+  <div class="theme-toggle"><i class="fas fa-moon"></i></div>
+  <div class="container">
+    <div class="header">Exam Countdown</div>
+    <div class="countdown">
+      <div>
+        <div class="value" id="days">--</div>
+        <div class="label">DAYS</div>
+      </div>
+      <div>
+        <div class="value" id="hours">--</div>
+        <div class="label">HOURS</div>
+      </div>
+      <div>
+        <div class="value" id="minutes">--</div>
+        <div class="label">MINUTES</div>
+      </div>
+      <div>
+        <div class="value" id="seconds">--</div>
+        <div class="label">SECONDS</div>
+      </div>
     </div>
+  </div>
+  <script>
+    const toggleButton = document.querySelector('.theme-toggle');
+    const body = document.body;
+
+    toggleButton.addEventListener('click', () => {
+      body.classList.toggle('light-theme');
+      const icon = toggleButton.querySelector('i');
+      icon.classList.toggle('fa-moon');
+      icon.classList.toggle('fa-sun');
+    });
+
+    function updateCountdown() {
+      const examDate = new Date("2024-08-26T08:00:00");
+      const now = new Date();
+      const timeDifference = examDate - now;
+
+      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+      document.getElementById('days').textContent = days > 0 ? days : 0;
+      document.getElementById('hours').textContent = hours > 0 ? hours : 0;
+      document.getElementById('minutes').textContent = minutes > 0 ? minutes : 0;
+      document.getElementById('seconds').textContent = seconds > 0 ? seconds : 0;
+    }
+
+    setInterval(updateCountdown, 1000);
+
+    // Light theme styles
+    const style = document.createElement('style');
+    style.textContent = `
+      body.light-theme {
+        background-color: #f0f0f0;
+        color: #000;
+      }
+      body.light-theme .countdown div {
+        background: #ddd;
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
 </body>
 </html>
