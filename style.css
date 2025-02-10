@@ -1,4 +1,4 @@
- body {
+body {
       display: flex;
       width: 90%;
       align-items: center;
@@ -7,61 +7,52 @@
       color: #fff;
       font-family: Arial, sans-serif;
       transition: background-color 0.3s, color 0.3s;
- }
-
-    .container {
+}
+.container {
       text-align: center;
       padding: 20px;
       margin: auto;
-    }
-
-    .header {
+}
+.header {
       font-size: 1.5rem;
       font: Helvetica;
       margin-bottom: 20px;
     }
-
-    .countdown {
+.countdown {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
       gap: 7px;
       width: 100%;
       max-width: 600px;
     }
-
-    .countdown div {
+.countdown div {
       background: #111;
       padding: 15px;
       border-radius: 8px;
       text-align: center;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
-
-    .countdown .value {
+.countdown .value {
       font-size: 1.5rem;
       font-weight: bold;
     }
-
-    .countdown .label {
+.countdown .label {
       margin-top: 5px;
       font-size: 0.8rem;
       font: Helvetica;
     }
-
-    .theme-toggle {
+.theme-toggle {
       position: fixed;
       top: 20px;
       right: 20px;
       font-size: 1.5rem;
       cursor: pointer;
     }
-
-    /* Light theme styles */
-    body.light-theme {
+/* Light theme styles */
+ body.light-theme {
       background-color: #f0f0f0;
       color: #000;
-    }
-
-    body.light-theme .countdown div {
+ }
+body.light-theme .countdown div {
       background: #ddd;
     }
