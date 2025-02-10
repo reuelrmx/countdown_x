@@ -1,6 +1,6 @@
 body {
       display: flex;
-      width: 90%;
+      width: 95%;
       align-items: center;
       justify-content: center;
       background-color: #000;
@@ -11,9 +11,6 @@ body {
 .container {
       text-align: center;
       padding: 20px;
-      margin: auto;
-}
-hr {
       margin: auto;
 }
 .header {
