@@ -1,5 +1,6 @@
-const targetDate = new Date("2025-08-25T00:00:00").getTime();
-function updateCountdown() {
+    const targetDate = new Date("2025-08-25T08:00:00").getTime();
+
+    function updateCountdown() {
       const now = new Date().getTime();
       const distance = targetDate - now;
 
@@ -12,10 +13,10 @@ function updateCountdown() {
       document.getElementById("hours").innerText = hours > 0 ? hours : 0;
       document.getElementById("minutes").innerText = minutes > 0 ? minutes : 0;
       document.getElementById("seconds").innerText = seconds > 0 ? seconds : 0;
-}
+    }
 
-function toggleTheme() {
+    function toggleTheme() {
       document.body.classList.toggle("light-theme");
-}
+    }
 
-setInterval(updateCountdown, 1000);
+    setInterval(updateCountdown, 1000);
