@@ -1,74 +1,58 @@
-:root {
-    --bg-color: #000;
-    --text-color: #fff;
-    --box-bg: #222;
-    --border-color: #111;
-}
+ 
 
-.light-mode {
-    --bg-color: #fff;
-    --text-color: #000;
-    --box-bg: #ddd;
-    --border-color: #aaa;
-}
+    .container {
+      text-align: center;
+      padding: 20px;
+      margin: auto;
+    }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    text-align: center;
-    transition: all 0.3s ease-in-out;
-}
+    .header {
+      font-size: 1.5rem;
+      font: Helvetica;
+      margin-bottom: 20px;
+    }
 
-.container {
-    max-width: 500px;
-    margin: auto;
-    padding: 20px;
-}
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 7px;
+      width: 100%;
+      max-width: 600px;
+    }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+    .countdown div {
+      background: #111;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
 
-.theme-button {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--text-color);
-    cursor: pointer;
-}
+    .countdown .value {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
 
-.countdown {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px 0;
-}
+    .countdown .label {
+      margin-top: 5px;
+      font-size: 0.8rem;
+      font: Helvetica;
+    }
 
-.time-box {
-    background: var(--box-bg);
-    padding: 15px;
-    border-radius: 10px;
-    border: 2px solid var(--border-color);
-    font-size: 1.2rem;
-    width: 80px;
-}
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
 
-.progress-bar {
-    width: 100%;
-    height: 10px;
-    background: var(--box-bg);
-    border-radius: 5px;
-    overflow: hidden;
-}
+    /* Light theme styles */
+    body.light-theme {
+      background-color: #f0f0f0;
+      color: #000;
+    }
 
-#progress-fill {
-    height: 100%;
-    background: #4caf50;
-    transition: width 0.5s ease-in-out;
-}
-
-footer {
-    margin-top: 20px;
-}
+    body.light-theme .countdown div {
+      background: #ddd;
+    }
