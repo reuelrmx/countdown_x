@@ -11,8 +11,10 @@ body {
 .container {
       text-align: center;
       padding: 20px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: auto;
+}
+hr {
+      margin: auto;
 }
 .header {
       font-size: 1.5rem;
